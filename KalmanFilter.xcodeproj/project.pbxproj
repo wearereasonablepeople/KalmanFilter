@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CEAAE1F11D66640400D29016 /* KalmanFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */; };
+		CEAAE1F31D66661D00D29016 /* KalmanFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAE1F21D66661D00D29016 /* KalmanFilter.swift */; };
 		CEF0077C1D650AEE0084F081 /* KalmanFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = CEF0077B1D650AEE0084F081 /* KalmanFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CEF007831D650AEE0084F081 /* KalmanFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF007781D650AEE0084F081 /* KalmanFilter.framework */; };
 		CEF007881D650AEE0084F081 /* KalmanFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF007871D650AEE0084F081 /* KalmanFilterTests.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KalmanFilterType.swift; sourceTree = "<group>"; };
+		CEAAE1F21D66661D00D29016 /* KalmanFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KalmanFilter.swift; sourceTree = "<group>"; };
 		CEF007781D650AEE0084F081 /* KalmanFilter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KalmanFilter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF0077B1D650AEE0084F081 /* KalmanFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KalmanFilter.h; sourceTree = "<group>"; };
 		CEF0077D1D650AEE0084F081 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			children = (
 				CEF0077B1D650AEE0084F081 /* KalmanFilter.h */,
 				CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */,
+				CEAAE1F21D66661D00D29016 /* KalmanFilter.swift */,
 				CEF0077D1D650AEE0084F081 /* Info.plist */,
 			);
 			path = KalmanFilter;
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEAAE1F11D66640400D29016 /* KalmanFilterType.swift in Sources */,
+				CEAAE1F31D66661D00D29016 /* KalmanFilter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
