@@ -28,7 +28,9 @@ public struct KalmanFilter<Type: KalmanInput>: KalmanFilterType {
      - returns: Another instance of Kalman filter with predicted x̂_k and P_k
      */
     public func predict(stateTransitionModel: Type, controlInputModel: Type, controlVector: Type, covarianceOfProcessNoise: Type) -> KalmanFilter {
+        // x̂_k|k-1 = F_k * x̂_k-1|k-1 + B_k * u_k
         let predictedStateEstimate = stateTransitionModel * stateEstimatePrior + controlInputModel * controlVector
+        // P_k|k-1 = F_k * P_k-1|k-1 * F_k^t + Q_k
         let predictedEstimateCovariance = stateTransitionModel * errorCovariancePrior * stateTransitionModel.transposed + covarianceOfProcessNoise
         
         return KalmanFilter(stateEstimatePrior: predictedStateEstimate, errorCovariancePrior: predictedEstimateCovariance)
