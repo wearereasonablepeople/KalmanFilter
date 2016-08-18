@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEAAE1F11D66640400D29016 /* KalmanFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */; };
 		CEF0077C1D650AEE0084F081 /* KalmanFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = CEF0077B1D650AEE0084F081 /* KalmanFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CEF007831D650AEE0084F081 /* KalmanFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF007781D650AEE0084F081 /* KalmanFilter.framework */; };
 		CEF007881D650AEE0084F081 /* KalmanFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF007871D650AEE0084F081 /* KalmanFilterTests.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KalmanFilterType.swift; sourceTree = "<group>"; };
 		CEF007781D650AEE0084F081 /* KalmanFilter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KalmanFilter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF0077B1D650AEE0084F081 /* KalmanFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KalmanFilter.h; sourceTree = "<group>"; };
 		CEF0077D1D650AEE0084F081 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF0077B1D650AEE0084F081 /* KalmanFilter.h */,
+				CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */,
 				CEF0077D1D650AEE0084F081 /* Info.plist */,
 			);
 			path = KalmanFilter;
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEAAE1F11D66640400D29016 /* KalmanFilterType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +314,7 @@
 		CEF0078D1D650AEE0084F081 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -320,12 +325,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.violentoctopus.KalmanFilter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		CEF0078E1D650AEE0084F081 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -378,6 +385,7 @@
 				CEF0078E1D650AEE0084F081 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CEF0078F1D650AEE0084F081 /* Build configuration list for PBXNativeTarget "KalmanFilterTests" */ = {
 			isa = XCConfigurationList;
@@ -386,6 +394,7 @@
 				CEF007911D650AEE0084F081 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
