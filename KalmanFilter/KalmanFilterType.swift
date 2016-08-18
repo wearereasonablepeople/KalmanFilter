@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol KalmanInput {
+public protocol KalmanInput {
     var transposed: Self { get }
     var inversed: Self { get }
     var additionToUnit: Self { get }
@@ -18,7 +18,7 @@ protocol KalmanInput {
     func * (lhs: Self, rhs: Self) -> Self
 }
 
-protocol KalmanFilterType {
+public protocol KalmanFilterType {
     associatedtype Type: KalmanInput
     
     var stateEstimatePrior: Type { get }
