@@ -11,11 +11,11 @@ import Foundation
 /**
  Conventional Kalman Filter
  */
-struct KalmanFilter<Type: KalmanInput>: KalmanFilterType {
+public struct KalmanFilter<Type: KalmanInput>: KalmanFilterType {
     /// x̂_k|k-1
-    let stateEstimatePrior: Type
+    public let stateEstimatePrior: Type
     /// P_k|k-1
-    let errorCovariancePrior: Type
+    public let errorCovariancePrior: Type
     
     /**
      Predict step in Kalman filter.
@@ -27,7 +27,7 @@ struct KalmanFilter<Type: KalmanInput>: KalmanFilterType {
      
      - returns: Another instance of Kalman filter with predicted x̂_k and P_k
      */
-    func predict(stateTransitionModel: Type, controlInputModel: Type, controlVector: Type, covarianceOfProcessNoise: Type) -> KalmanFilter {
+    public func predict(stateTransitionModel: Type, controlInputModel: Type, controlVector: Type, covarianceOfProcessNoise: Type) -> KalmanFilter {
         let predictedStateEstimate = stateTransitionModel * stateEstimatePrior + controlInputModel * controlVector
         let predictedEstimateCovariance = stateTransitionModel * errorCovariancePrior * stateTransitionModel.transposed + covarianceOfProcessNoise
         
@@ -43,7 +43,7 @@ struct KalmanFilter<Type: KalmanInput>: KalmanFilterType {
      
      - returns: Updated with the measurements version of Kalman filter with new x̂_k and P_k
      */
-    func update(measurement: Type, observationModel: Type, covarienceOfObservationNoise: Type) -> KalmanFilter {
+    public func update(measurement: Type, observationModel: Type, covarienceOfObservationNoise: Type) -> KalmanFilter {
         // H_k^t transposed. We cache it improve performance
         let observationModelTransposed = observationModel.transposed
         
