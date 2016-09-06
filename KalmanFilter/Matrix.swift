@@ -31,6 +31,15 @@ public struct Matrix: Equatable {
         self.init(grid: grid, rows: rows, columns: columns)
     }
     
+    /**
+     Initialization with grid that contains all the
+     elements of matrix with given matrix size
+     
+     - parameter grid: array of matrix elements. **warning**
+     Should be of rows x column size.
+     - parameter rows: number of rows in matrix
+     - parameter columns: number of columns in matrix
+     */
     public init(grid: [Double], rows: Int, columns: Int) {
         guard rows * columns == grid.count else {
             fatalError("Wrong size of the grid")
