@@ -60,6 +60,12 @@ public struct Matrix: Equatable {
         self.init(grid: vector, rows: vector.count, columns: 1)
     }
     
+    /**
+     Initialization of vector with given number of rows.
+     Every element is assign to 0.0
+     
+     - parameter size: vector size
+     */
     public init(vectorOf size: Int) {
         self.init(rows: size, columns: 1)
     }
