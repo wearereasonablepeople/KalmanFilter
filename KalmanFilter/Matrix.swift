@@ -108,6 +108,14 @@ public struct Matrix: Equatable {
     }
     
     // MARK: - Public Methods
+    /**
+     Determines whether element exists at specified row and
+     column
+     
+     - parameter row: row index of element
+     - parameter column: column index of element
+     - returns: bool indicating whether spicified indeces are valid
+     */
     public func indexIsValid(forRow row: Int, column: Int) -> Bool {
         return row >= 0 && row < rows && column >= 0 && column < columns
     }
