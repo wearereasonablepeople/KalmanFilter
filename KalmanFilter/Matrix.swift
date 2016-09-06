@@ -8,22 +8,22 @@
 
 import Foundation
 
-struct Matrix: Equatable {
+public struct Matrix: Equatable {
     // MARK: - Properties
-    let rows: Int, columns: Int
-    var grid: [Double]
+    public let rows: Int, columns: Int
+    public var grid: [Double]
     
     var isSquare: Bool {
         return rows == columns
     }
     
     // MARK: - Initialization
-    init(rows: Int, columns: Int) {
+    public init(rows: Int, columns: Int) {
         let grid = Array(count: rows * columns, repeatedValue: 0.0)
         self.init(grid: grid, rows: rows, columns: columns)
     }
     
-    init(grid: [Double], rows: Int, columns: Int) {
+    public init(grid: [Double], rows: Int, columns: Int) {
         if rows * columns != grid.count {
             fatalError("Wrong size of the grid")
         }
@@ -33,35 +33,35 @@ struct Matrix: Equatable {
         self.grid = grid
     }
     
-    init(vector: [Double]) {
+    public init(vector: [Double]) {
         self.init(grid: vector, rows: vector.count, columns: 1)
     }
     
-    init(vectorOf size: Int) {
+    public init(vectorOf size: Int) {
         self.init(rows: size, columns: 1)
     }
     
-    init(squareOfSize size: Int) {
+    public init(squareOfSize size: Int) {
         self.init(rows: size, columns: size)
     }
     
-    init(identityOfSize size: Int) {
+    public init(identityOfSize size: Int) {
         self.init(squareOfSize: size)
         for i in 0..<size {
             self[i, i] = 1
         }
     }
     
-    init(_ array2d: [[Double]]) {
+    public init(_ array2d: [[Double]]) {
         self.init(grid: array2d.flatMap({$0}), rows: array2d.count, columns: array2d.first?.count ?? 0)
     }
     
     // MARK: - Public Methods
-    func indexIsValid(forRow row: Int, column: Int) -> Bool {
+    public func indexIsValid(forRow row: Int, column: Int) -> Bool {
         return row >= 0 && row < rows && column >= 0 && column < columns
     }
     
-    subscript(row: Int, column: Int) -> Double {
+    public subscript(row: Int, column: Int) -> Double {
         get {
             assert(indexIsValid(forRow: row, column: column), "Index out of range")
             return grid[(row * columns) + column]
@@ -75,7 +75,7 @@ struct Matrix: Equatable {
 
 // MARK: - Equatable
 
-func == (lhs: Matrix, rhs: Matrix) -> Bool {
+public func == (lhs: Matrix, rhs: Matrix) -> Bool {
     return lhs.rows == rhs.rows && lhs.columns == rhs.columns && lhs.grid == rhs.grid
 }
 
@@ -86,7 +86,7 @@ extension Matrix: KalmanInput {
      
      Compexity: O(n^2)
      */
-    var transposed: Matrix {
+    public var transposed: Matrix {
         var resultMatrix = Matrix(rows: columns, columns: rows)
         for i in 0..<rows {
             for j in 0..<columns {
@@ -104,12 +104,12 @@ extension Matrix: KalmanInput {
      
      Complexity: O(n ^ 2)
      */
-    var additionToUnit: Matrix {
+    public var additionToUnit: Matrix {
         assert(isSquare, "Matrix should be square")
         return Matrix(identityOfSize: rows) - self
     }
     
-    var inversed: Matrix {
+    public var inversed: Matrix {
         assert(isSquare, "Matrix should be square")
         
         if rows == 1 {
@@ -129,7 +129,7 @@ extension Matrix: KalmanInput {
         return resultMatrix
     }
     
-    var determinant: Double {
+    public var determinant: Double {
         assert(isSquare, "Matrix should be square")
         var result = 0.0
         if rows == 1 {
@@ -143,7 +143,7 @@ extension Matrix: KalmanInput {
         return result
     }
     
-    func additionalMatrix(row: Int, column: Int) -> Matrix {
+    public func additionalMatrix(row: Int, column: Int) -> Matrix {
         assert(indexIsValid(forRow: row, column: column), "Invalid arguments")
         var resultMatrix = Matrix(rows: rows - 1, columns: columns - 1)
         for i in 0..<rows {
@@ -185,7 +185,7 @@ extension Matrix: KalmanInput {
  
  Complexity: O(n^2)
  */
-func + (lhs: Matrix, rhs: Matrix) -> Matrix {
+public func + (lhs: Matrix, rhs: Matrix) -> Matrix {
     return lhs.operate(with: rhs, closure: +)
 }
 
@@ -194,7 +194,7 @@ func + (lhs: Matrix, rhs: Matrix) -> Matrix {
  
  Complexity: O(n^2)
  */
-func - (lhs: Matrix, rhs: Matrix) -> Matrix {
+public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
     return lhs.operate(with: rhs, closure: -)
 }
 
@@ -204,7 +204,7 @@ func - (lhs: Matrix, rhs: Matrix) -> Matrix {
  
  Complexity: O(n^3)
  */
-func * (lhs: Matrix, rhs: Matrix) -> Matrix {
+public func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     if lhs.columns != rhs.rows {
         fatalError("Cannot multiply matrices")
     }
@@ -227,17 +227,17 @@ func * (lhs: Matrix, rhs: Matrix) -> Matrix {
 }
 
 // MARK: - Nice additional methods
-func * (lhs: Matrix, rhs: Double) -> Matrix {
+public func * (lhs: Matrix, rhs: Double) -> Matrix {
     return Matrix(grid: lhs.grid.map({ $0*rhs }), rows: lhs.rows, columns: lhs.columns)
 }
 
-func * (lhs: Double, rhs: Matrix) -> Matrix {
+public func * (lhs: Double, rhs: Matrix) -> Matrix {
     return rhs * lhs
 }
 
 // MARK: - CustomStringConvertible for debug output
 extension Matrix: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         var rows = [String]()
         
         for row in 0..<self.rows {
