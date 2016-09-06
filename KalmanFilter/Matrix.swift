@@ -20,7 +20,7 @@ public struct Matrix: Equatable {
     // MARK: - Initialization
     
     /**
-     Initialization of matrix with rows x columns
+     Initialization of matrix with rows * columns
      size where all the elements are set to 0.0
      
      - parameter rows: number of rows in matrix
@@ -36,7 +36,7 @@ public struct Matrix: Equatable {
      elements of matrix with given matrix size
      
      - parameter grid: array of matrix elements. **warning**
-     Should be of rows x column size.
+     Should be of rows * column size.
      - parameter rows: number of rows in matrix
      - parameter columns: number of columns in matrix
      */
