@@ -141,7 +141,8 @@ public func == (lhs: Matrix, rhs: Matrix) -> Bool {
 // MARK: -  Matrix as KalmanInput
 extension Matrix: KalmanInput {
     /**
-     Transposed version of matrix
+     [Transposed](https://en.wikipedia.org/wiki/Transpose)
+     version of matrix
      
      Compexity: O(n^2)
      */
