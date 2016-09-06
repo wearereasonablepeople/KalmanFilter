@@ -24,7 +24,7 @@ public struct Matrix: Equatable {
     }
     
     public init(grid: [Double], rows: Int, columns: Int) {
-        if rows * columns != grid.count {
+        guard rows * columns == grid.count else {
             fatalError("Wrong size of the grid")
         }
         
