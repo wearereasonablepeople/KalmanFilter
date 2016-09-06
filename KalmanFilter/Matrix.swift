@@ -195,6 +195,9 @@ extension Matrix: KalmanInput {
         return resultMatrix
     }
     
+    /**
+     [Matrix determinant](https://en.wikipedia.org/wiki/Determinant)
+     */
     public var determinant: Double {
         assert(isSquare, "Matrix should be square")
         var result = 0.0
