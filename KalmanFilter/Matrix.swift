@@ -81,6 +81,13 @@ public struct Matrix: Equatable {
         self.init(rows: size, columns: size)
     }
     
+    /**
+     Initialization of 
+     [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix)
+     of given sizen
+     
+     - parameter size: number of rows and columns in identity matrix
+     */
     public init(identityOfSize size: Int) {
         self.init(squareOfSize: size)
         for i in 0..<size {
