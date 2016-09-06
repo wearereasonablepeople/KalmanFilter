@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEA8B1E91D7EC02B009E3AAD /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8B1E81D7EC02B009E3AAD /* Matrix.swift */; };
 		CEAAE1F11D66640400D29016 /* KalmanFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */; };
 		CEAAE1F31D66661D00D29016 /* KalmanFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAE1F21D66661D00D29016 /* KalmanFilter.swift */; };
 		CEF0077C1D650AEE0084F081 /* KalmanFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = CEF0077B1D650AEE0084F081 /* KalmanFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CEA8B1E81D7EC02B009E3AAD /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KalmanFilterType.swift; sourceTree = "<group>"; };
 		CEAAE1F21D66661D00D29016 /* KalmanFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KalmanFilter.swift; sourceTree = "<group>"; };
 		CEF007781D650AEE0084F081 /* KalmanFilter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KalmanFilter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 				CEF0077B1D650AEE0084F081 /* KalmanFilter.h */,
 				CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */,
 				CEAAE1F21D66661D00D29016 /* KalmanFilter.swift */,
+				CEA8B1E81D7EC02B009E3AAD /* Matrix.swift */,
 				CEF0077D1D650AEE0084F081 /* Info.plist */,
 			);
 			path = KalmanFilter;
@@ -202,6 +205,7 @@
 			files = (
 				CEAAE1F11D66640400D29016 /* KalmanFilterType.swift in Sources */,
 				CEAAE1F31D66661D00D29016 /* KalmanFilter.swift in Sources */,
+				CEA8B1E91D7EC02B009E3AAD /* Matrix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
