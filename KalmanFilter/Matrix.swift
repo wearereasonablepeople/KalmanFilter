@@ -98,6 +98,11 @@ public struct Matrix: Equatable {
         }
     }
     
+    /**
+     Convenience initialization from 2D array
+     
+     - parameter array2d: 2D array representation of matrix
+     */
     public init(_ array2d: [[Double]]) {
         self.init(grid: array2d.flatMap({$0}), rows: array2d.count, columns: array2d.first?.count ?? 0)
     }
