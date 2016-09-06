@@ -158,7 +158,9 @@ extension Matrix: KalmanInput {
     
     /**
      Addition to Unit in form: **I - A**
-     where **I** - is unit matrix and **A** - is self
+     where **I** - is 
+     [identity matrix](https://en.wikipedia.org/wiki/Identity_matrix) 
+     and **A** - is self
      
      **warning** Only for square matrices
      
