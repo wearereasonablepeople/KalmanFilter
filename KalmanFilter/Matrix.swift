@@ -70,6 +70,13 @@ public struct Matrix: Equatable {
         self.init(rows: size, columns: 1)
     }
     
+    /**
+     Initialization of square matrix with given size. Number of
+     elements in array equals to size * size. Every elements is
+     assigned to 0.0
+     
+     - parameter size: number of rows and columns in matrix
+     */
     public init(squareOfSize size: Int) {
         self.init(rows: size, columns: size)
     }
