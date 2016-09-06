@@ -51,7 +51,9 @@ public struct Matrix: Equatable {
     }
     
     /**
-     Initialization of vector with given array. Number of
+     Initialization of 
+     [column vector](https://en.wikipedia.org/wiki/Row_and_column_vectors)
+     with given array. Number of
      elements in array equals to number of rows in vector.
      
      - parameter vector: array with elements of vector
@@ -61,8 +63,9 @@ public struct Matrix: Equatable {
     }
     
     /**
-     Initialization of vector with given number of rows.
-     Every element is assign to 0.0
+     Initialization of 
+     [column vector](https://en.wikipedia.org/wiki/Row_and_column_vectors)
+     with given number of rows. Every element is assign to 0.0
      
      - parameter size: vector size
      */
