@@ -50,6 +50,12 @@ public struct Matrix: Equatable {
         self.grid = grid
     }
     
+    /**
+     Initialization of vector with given array. Number of
+     elements in array equals to number of rows in vector.
+     
+     - parameter vector: array with elements of vector
+    */
     public init(vector: [Double]) {
         self.init(grid: vector, rows: vector.count, columns: 1)
     }
