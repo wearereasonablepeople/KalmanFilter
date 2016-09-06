@@ -171,6 +171,10 @@ extension Matrix: KalmanInput {
         return Matrix(identityOfSize: rows) - self
     }
     
+    /**
+     Inversed matrix if
+     [it is invertible](https://en.wikipedia.org/wiki/Invertible_matrix)
+     */
     public var inversed: Matrix {
         assert(isSquare, "Matrix should be square")
         
