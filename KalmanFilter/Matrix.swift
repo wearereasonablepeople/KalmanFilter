@@ -18,6 +18,14 @@ public struct Matrix: Equatable {
     }
     
     // MARK: - Initialization
+    
+    /**
+     Initialization of matrix with rows x columns
+     size where all the elements are set to 0.0
+     
+     - parameter rows: number of rows in matrix
+     - parameter columns: number of columns in matrix
+     */
     public init(rows: Int, columns: Int) {
         let grid = Array(count: rows * columns, repeatedValue: 0.0)
         self.init(grid: grid, rows: rows, columns: columns)
