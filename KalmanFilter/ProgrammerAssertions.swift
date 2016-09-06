@@ -25,19 +25,6 @@ func assert(@autoclosure condition: () -> Bool, @autoclosure _ message: () -> St
     Assertions.assertClosure(condition(), message(), file, line)
 }
 
-func assertionFailure(@autoclosure message: () -> String = "", file: StaticString = #file, line: UInt = #line) {
-    Assertions.assertionFailureClosure(message(), file, line)
-}
-
-func precondition(@autoclosure condition: () -> Bool, @autoclosure _ message: () -> String = "", file: StaticString = #file, line: UInt = #line) {
-    Assertions.preconditionClosure(condition(), message(), file, line)
-}
-
-@noreturn func preconditionFailure(@autoclosure message: () -> String = "", file: StaticString = #file, line: UInt = #line) {
-    Assertions.preconditionFailureClosure(message(), file, line)
-    runForever()
-}
-
 @noreturn func fatalError(@autoclosure message: () -> String = "", file: StaticString = #file, line: UInt = #line) {
     Assertions.fatalErrorClosure(message(), file, line)
     runForever()
