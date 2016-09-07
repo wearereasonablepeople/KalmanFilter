@@ -29,7 +29,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CEF007811D650AEE0084F081"
+               BuildableName = "KalmanFilterTests.xctest"
+               BlueprintName = "KalmanFilterTests"
+               ReferencedContainer = "container:KalmanFilter.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CEF007771D650AEE0084F081"
+            BuildableName = "KalmanFilter.framework"
+            BlueprintName = "KalmanFilter"
+            ReferencedContainer = "container:KalmanFilter.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
