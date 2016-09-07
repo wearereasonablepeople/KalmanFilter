@@ -18,7 +18,7 @@ let measurements = [0.39, 0.50, 0.48, 0.29, 0.25, 0.32, 0.34, 0.48, 0.41, 0.45, 
 var filter = KalmanFilter(stateEstimatePrior: 0.0, errorCovariancePrior: 1)
 
 for measurement in measurements {
-    let prediction = filter.predict(1, controlInputModel: 0, controlVector: 0)
+    let prediction = filter.predict(1, controlInputModel: 0, controlVector: 0, covarianceOfProcessNoise: 0)
     let update = prediction.update(measurement, observationModel: 1, covarienceOfObservationNoise: 0.1)
     
     filter = update
