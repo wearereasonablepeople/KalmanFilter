@@ -17,6 +17,11 @@ public struct KalmanFilter<Type: KalmanInput>: KalmanFilterType {
     /// P_k|k-1
     public let errorCovariancePrior: Type
     
+    public init(stateEstimatePrior: Type, errorCovariancePrior: Type) {
+        self.stateEstimatePrior = stateEstimatePrior
+        self.errorCovariancePrior = errorCovariancePrior
+    }
+    
     /**
      Predict step in Kalman filter.
      
