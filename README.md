@@ -1,5 +1,8 @@
 # KalmanFilter
 Swift implementation of Conventional Kalman Filter algorithm
+
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 ##Motivation:
 [Kalman filter](https://en.wikipedia.org/wiki/Kalman_filter) is a widely applied algorithm to get a more
 accurate guess in noisy environment. It has a lot of applications in real life such as guidance, navigation
