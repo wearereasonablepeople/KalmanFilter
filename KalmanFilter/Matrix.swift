@@ -27,7 +27,7 @@ public struct Matrix: Equatable {
      - parameter columns: number of columns in matrix
      */
     public init(rows: Int, columns: Int) {
-        let grid = Array(count: rows * columns, repeatedValue: 0.0)
+        let grid = Array(repeating: 0.0, count: rows * columns)
         self.init(grid: grid, rows: rows, columns: columns)
     }
     
