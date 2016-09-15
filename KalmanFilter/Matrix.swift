@@ -188,7 +188,7 @@ extension Matrix: KalmanInput {
         for i in 0..<rows {
             for j in 0..<rows {
                 let sign = (i + j) % 2 == 0 ? 1.0: -1.0
-                resultMatrix[i, j] = sign * tM.additionalMatrix(i, column: j).determinant / det
+                resultMatrix[i, j] = sign * tM.additionalMatrix(row: i, column: j).determinant / det
             }
         }
         
@@ -206,7 +206,7 @@ extension Matrix: KalmanInput {
         } else {
             for i in 0..<rows {
                 let sign = i % 2 == 0 ? 1.0 : -1.0
-                result += sign * self[i, 0] * additionalMatrix(i, column: 0).determinant
+                result += sign * self[i, 0] * additionalMatrix(row: i, column: 0).determinant
             }
         }
         return result
