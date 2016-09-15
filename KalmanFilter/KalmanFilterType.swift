@@ -13,9 +13,9 @@ public protocol KalmanInput {
     var inversed: Self { get }
     var additionToUnit: Self { get }
     
-    func + (lhs: Self, rhs: Self) -> Self
-    func - (lhs: Self, rhs: Self) -> Self
-    func * (lhs: Self, rhs: Self) -> Self
+    static func + (lhs: Self, rhs: Self) -> Self
+    static func - (lhs: Self, rhs: Self) -> Self
+    static func * (lhs: Self, rhs: Self) -> Self
 }
 
 public protocol KalmanFilterType {
