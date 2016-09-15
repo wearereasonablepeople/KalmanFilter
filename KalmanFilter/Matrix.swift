@@ -232,7 +232,7 @@ extension Matrix: KalmanInput {
     }
     
     // MARK: - Private methods
-    private func operate(with otherMatrix: Matrix, @noescape closure: (Double, Double) -> Double) -> Matrix {
+    fileprivate func operate(with otherMatrix: Matrix, closure: (Double, Double) -> Double) -> Matrix {
         if rows != otherMatrix.rows || columns != otherMatrix.columns {
             fatalError("Matrixes are not equal")
         }
