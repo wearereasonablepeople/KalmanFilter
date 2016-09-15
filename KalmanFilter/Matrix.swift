@@ -331,9 +331,9 @@ extension Matrix: CustomStringConvertible {
                 rightCharacter = "⎮"
             }
             
-            rows.append(leftCharacter + rowValues.joinWithSeparator(", ") + rightCharacter)
+            rows.append(leftCharacter + rowValues.joined(separator: ", ") + rightCharacter)
         }
         
-        return rows.joinWithSeparator("\n")
+        return rows.joined(separator: "\n")
     }
 }
