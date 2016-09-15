@@ -33,7 +33,7 @@ public extension XCTestCase {
      - parameter testCase:        The test case to be executed that expected to fire the assertion method.
      */
     public func expectAssert(
-        expectedMessage: String? = nil,
+        _ expectedMessage: String? = nil,
         file: StaticString = #file,
         line: UInt = #line,
         testCase: () -> Void
@@ -60,7 +60,7 @@ public extension XCTestCase {
      - parameter testCase:        The test case to be executed that expected to fire the assertion method.
      */
     public func expectAssertionFailure(
-        expectedMessage: String? = nil,
+        _ expectedMessage: String? = nil,
         file: StaticString = #file,
         line: UInt = #line,
         testCase: () -> Void
@@ -87,7 +87,7 @@ public extension XCTestCase {
      - parameter testCase:        The test case to be executed that expected to fire the assertion method.
      */
     public func expectPrecondition(
-        expectedMessage: String? = nil,
+        _ expectedMessage: String? = nil,
         file: StaticString = #file,
         line: UInt = #line,
         testCase: () -> Void
@@ -114,7 +114,7 @@ public extension XCTestCase {
      - parameter testCase:        The test case to be executed that expected to fire the assertion method.
      */
     public func expectPreconditionFailure(
-        expectedMessage: String? = nil,
+        _ expectedMessage: String? = nil,
         file: StaticString = #file,
         line: UInt = #line,
         testCase: () -> Void
@@ -141,7 +141,7 @@ public extension XCTestCase {
      - parameter testCase:        The test case to be executed that expected to fire the assertion method.
      */
     public func expectFatalError(
-        expectedMessage: String? = nil,
+        _ expectedMessage: String? = nil,
         file: StaticString = #file,
         line: UInt = #line,
         testCase: () -> Void) {
@@ -159,17 +159,17 @@ public extension XCTestCase {
     
     // MARK:- Private Methods
     
-    private func expectAssertionReturnFunction(
-        functionName: String,
+    fileprivate func expectAssertionReturnFunction(
+        _ functionName: String,
         file: StaticString,
         line: UInt,
-        function: (caller: (Bool, String) -> Void) -> Void,
+        function: (_ caller: (Bool, String) -> Void) -> Void,
         expectedMessage: String? = nil,
         testCase: () -> Void,
-        cleanUp: () -> ()
+        cleanUp: @escaping () -> ()
         ) {
         
-        let expectation = expectationWithDescription(functionName + "-Expectation")
+        let expectation = self.expectation(description: functionName + "-Expectation")
         var assertion: (condition: Bool, message: String)? = nil
         
         function { (condition, message) -> Void in
@@ -180,7 +180,7 @@ public extension XCTestCase {
         // perform on the same thread since it will return
         testCase()
         
-        waitForExpectationsWithTimeout(0) { _ in
+        waitForExpectations(timeout: 0) { _ in
             
             defer {
                 // clean up
@@ -201,17 +201,17 @@ public extension XCTestCase {
         }
     }
     
-    private func expectAssertionNoReturnFunction(
-        functionName: String,
+    fileprivate func expectAssertionNoReturnFunction(
+        _ functionName: String,
         file: StaticString,
         line: UInt,
-        function: (caller: (String) -> Void) -> Void,
+        function: (_ caller: (String) -> Void) -> Void,
         expectedMessage: String? = nil,
-        testCase: () -> Void,
-        cleanUp: () -> ()
+        testCase: @escaping () -> Void,
+        cleanUp: @escaping () -> ()
         ) {
         
-        let expectation = expectationWithDescription(functionName + "-Expectation")
+        let expectation = self.expectation(description: functionName + "-Expectation")
         var assertionMessage: String? = nil
         
         function { (message) -> Void in
@@ -220,9 +220,9 @@ public extension XCTestCase {
         }
         
         // act, perform on separate thead because a call to function runs forever
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), testCase)
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async(execute: testCase)
         
-        waitForExpectationsWithTimeout(noReturnFailureWaitTime) { _ in
+        waitForExpectations(timeout: noReturnFailureWaitTime) { _ in
             
             defer {
                 // clean up

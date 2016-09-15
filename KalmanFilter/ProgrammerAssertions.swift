@@ -21,11 +21,11 @@ import Foundation
 
 /// drop-in replacements
 
-func assert(@autoclosure condition: () -> Bool, @autoclosure _ message: () -> String = "", file: StaticString = #file, line: UInt = #line) {
+func assert(_ condition: @autoclosure () -> Bool, _ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) {
     Assertions.assertClosure(condition(), message(), file, line)
 }
 
-@noreturn func fatalError(@autoclosure message: () -> String = "", file: StaticString = #file, line: UInt = #line) {
+func fatalError(_ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) -> Never  {
     Assertions.fatalErrorClosure(message(), file, line)
     runForever()
 }
@@ -48,8 +48,8 @@ class Assertions {
 
 /// This is a `noreturn` function that runs forever and doesn't return.
 /// Used by assertions with `@noreturn`.
-@noreturn private func runForever() {
+private func runForever() -> Never  {
     repeat {
-        NSRunLoop.currentRunLoop().run()
+        RunLoop.current.run()
     } while (true)
 }
