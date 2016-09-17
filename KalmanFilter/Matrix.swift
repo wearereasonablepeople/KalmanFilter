@@ -268,7 +268,7 @@ public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
  Complexity: O(n^3)
  */
 public func * (lhs: Matrix, rhs: Matrix) -> Matrix {
-    assert(lhs.columns != rhs.rows, "Left matrix columns should be the size of right matrix's rows")
+    assert(lhs.columns == rhs.rows, "Left matrix columns should be the size of right matrix's rows")
     var resultMatrix = Matrix(rows: lhs.rows, columns: rhs.columns)
     
     for i in 0..<resultMatrix.rows {
