@@ -13,17 +13,17 @@ public protocol KalmanInput {
     var inversed: Self { get }
     var additionToUnit: Self { get }
     
-    func + (lhs: Self, rhs: Self) -> Self
-    func - (lhs: Self, rhs: Self) -> Self
-    func * (lhs: Self, rhs: Self) -> Self
+    static func + (lhs: Self, rhs: Self) -> Self
+    static func - (lhs: Self, rhs: Self) -> Self
+    static func * (lhs: Self, rhs: Self) -> Self
 }
 
 public protocol KalmanFilterType {
-    associatedtype Type: KalmanInput
+    associatedtype Input: KalmanInput
     
-    var stateEstimatePrior: Type { get }
-    var errorCovariancePrior: Type { get }
+    var stateEstimatePrior: Input { get }
+    var errorCovariancePrior: Input { get }
     
-    func predict(stateTransitionModel: Type, controlInputModel: Type, controlVector: Type, covarianceOfProcessNoise: Type) -> Self
-    func update(measurement: Type, observationModel: Type, covarienceOfObservationNoise: Type) -> Self
+    func predict(stateTransitionModel: Input, controlInputModel: Input, controlVector: Input, covarianceOfProcessNoise: Input) -> Self
+    func update(measurement: Input, observationModel: Input, covarienceOfObservationNoise: Input) -> Self
 }

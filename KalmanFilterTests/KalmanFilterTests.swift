@@ -28,8 +28,8 @@ class KalmanFilterTests: XCTestCase {
         
         for measurement in measurements {
             let z = Matrix(grid: [measurement], rows: 1, columns: 1)
-            kalmanFilter = kalmanFilter.update(z, observationModel: H, covarienceOfObservationNoise: R)
-            kalmanFilter = kalmanFilter.predict(F, controlInputModel: B, controlVector: u, covarianceOfProcessNoise: Q)
+            kalmanFilter = kalmanFilter.update(measurement: z, observationModel: H, covarienceOfObservationNoise: R)
+            kalmanFilter = kalmanFilter.predict(stateTransitionModel: F, controlInputModel: B, controlVector: u, covarianceOfProcessNoise: Q)
         }
         
         let resultX = Matrix(vector: [3.9996664447958645, 0.9999998335552873])
