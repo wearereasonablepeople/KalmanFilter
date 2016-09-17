@@ -10,8 +10,6 @@
 		CE866F241D80A2FF00B5A9DD /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE866F231D80A2FF00B5A9DD /* DoubleExtension.swift */; };
 		CE866F261D80A63400B5A9DD /* DoubleExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE866F251D80A63400B5A9DD /* DoubleExtensionTests.swift */; };
 		CEA8B1E91D7EC02B009E3AAD /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8B1E81D7EC02B009E3AAD /* Matrix.swift */; };
-		CEA8B1EB1D7F1AFA009E3AAD /* ProgrammerAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8B1EA1D7F1AFA009E3AAD /* ProgrammerAssertions.swift */; };
-		CEA8B1ED1D7F1B4E009E3AAD /* XCTestCase+ProgrammerAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8B1EC1D7F1B4E009E3AAD /* XCTestCase+ProgrammerAssertions.swift */; };
 		CEA8B1EF1D7F1B99009E3AAD /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8B1EE1D7F1B99009E3AAD /* MatrixTests.swift */; };
 		CEAAE1F11D66640400D29016 /* KalmanFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */; };
 		CEAAE1F31D66661D00D29016 /* KalmanFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAE1F21D66661D00D29016 /* KalmanFilter.swift */; };
@@ -34,8 +32,6 @@
 		CE866F231D80A2FF00B5A9DD /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		CE866F251D80A63400B5A9DD /* DoubleExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtensionTests.swift; sourceTree = "<group>"; };
 		CEA8B1E81D7EC02B009E3AAD /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
-		CEA8B1EA1D7F1AFA009E3AAD /* ProgrammerAssertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgrammerAssertions.swift; sourceTree = "<group>"; };
-		CEA8B1EC1D7F1B4E009E3AAD /* XCTestCase+ProgrammerAssertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+ProgrammerAssertions.swift"; sourceTree = "<group>"; };
 		CEA8B1EE1D7F1B99009E3AAD /* MatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 		CEAAE1F01D66640400D29016 /* KalmanFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KalmanFilterType.swift; sourceTree = "<group>"; };
 		CEAAE1F21D66661D00D29016 /* KalmanFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KalmanFilter.swift; sourceTree = "<group>"; };
@@ -92,7 +88,6 @@
 				CEAAE1F21D66661D00D29016 /* KalmanFilter.swift */,
 				CEA8B1E81D7EC02B009E3AAD /* Matrix.swift */,
 				CE866F231D80A2FF00B5A9DD /* DoubleExtension.swift */,
-				CEA8B1EA1D7F1AFA009E3AAD /* ProgrammerAssertions.swift */,
 				CEF0077D1D650AEE0084F081 /* Info.plist */,
 			);
 			path = KalmanFilter;
@@ -104,7 +99,6 @@
 				CEF007871D650AEE0084F081 /* KalmanFilterTests.swift */,
 				CEA8B1EE1D7F1B99009E3AAD /* MatrixTests.swift */,
 				CE866F251D80A63400B5A9DD /* DoubleExtensionTests.swift */,
-				CEA8B1EC1D7F1B4E009E3AAD /* XCTestCase+ProgrammerAssertions.swift */,
 				CEF007891D650AEE0084F081 /* Info.plist */,
 			);
 			path = KalmanFilterTests;
@@ -221,7 +215,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE866F241D80A2FF00B5A9DD /* DoubleExtension.swift in Sources */,
-				CEA8B1EB1D7F1AFA009E3AAD /* ProgrammerAssertions.swift in Sources */,
 				CEAAE1F11D66640400D29016 /* KalmanFilterType.swift in Sources */,
 				CEAAE1F31D66661D00D29016 /* KalmanFilter.swift in Sources */,
 				CEA8B1E91D7EC02B009E3AAD /* Matrix.swift in Sources */,
@@ -235,7 +228,6 @@
 				CE866F261D80A63400B5A9DD /* DoubleExtensionTests.swift in Sources */,
 				CEA8B1EF1D7F1B99009E3AAD /* MatrixTests.swift in Sources */,
 				CEF007881D650AEE0084F081 /* KalmanFilterTests.swift in Sources */,
-				CEA8B1ED1D7F1B4E009E3AAD /* XCTestCase+ProgrammerAssertions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
