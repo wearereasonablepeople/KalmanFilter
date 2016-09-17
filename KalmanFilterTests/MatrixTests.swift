@@ -75,10 +75,6 @@ class MatrixTests: XCTestCase {
         let array2d = [[1.0, 0], [0, 1]]
         XCTAssertEqual(Matrix(array2d), Matrix(identityOfSize: 2))
         XCTAssertEqual(Matrix([[2.0], [1], [3]]), vectorMatrix)
-        
-        expectFatalError { 
-            let _ = Matrix(grid: [0, 1, 2], rows: 2, columns: 2)
-        }
     }
     
     func testMatrixCheckForSquare() {
@@ -152,10 +148,6 @@ class MatrixTests: XCTestCase {
         subtractionMatrix[1, 2] = matrixOne[1, 2] - matrixTwo[1, 2]
         
         XCTAssertEqual(matrixOne - matrixTwo, subtractionMatrix)
-        
-        expectFatalError { 
-            matrixOne - Matrix(identityOfSize: 2)
-        }
     }
     
     func testMatrixMultiplication() {
@@ -164,10 +156,6 @@ class MatrixTests: XCTestCase {
         let multipliedMatrices = Matrix([[83.0, 63, 37, 75]])
         
         XCTAssertEqual(matrixOne * matrixTwo, multipliedMatrices)
-        
-        expectFatalError() {
-            Matrix(rows: 2, columns: 1) * Matrix(rows: 2, columns: 1)
-        }
     }
     
     func testMatrixMultiplicationByScalar() {
