@@ -72,7 +72,7 @@ class MatrixTests: XCTestCase {
         XCTAssertEqual(vectorMatrix[1, 0], 1)
         XCTAssertEqual(vectorMatrix[2, 0], 3)
         
-        let array2d = [[1.0, 0], [0, 1]]
+        let array2d = [[1.0, 0.0], [0.0, 1.0]]
         XCTAssertEqual(Matrix(array2d), Matrix(identityOfSize: 2))
         XCTAssertEqual(Matrix([[2.0], [1], [3]]), vectorMatrix)
     }
