@@ -41,10 +41,7 @@ public struct Matrix: Equatable {
      - parameter columns: number of columns in matrix
      */
     public init(grid: [Double], rows: Int, columns: Int) {
-        guard rows * columns == grid.count else {
-            fatalError("Wrong size of the grid")
-        }
-        
+        assert(rows * columns == grid.count, "grid size should be rows * column size")
         self.rows = rows
         self.columns = columns
         self.grid = grid
@@ -233,10 +230,7 @@ extension Matrix: KalmanInput {
     
     // MARK: - Private methods
     fileprivate func operate(with otherMatrix: Matrix, closure: (Double, Double) -> Double) -> Matrix {
-        if rows != otherMatrix.rows || columns != otherMatrix.columns {
-            fatalError("Matrixes are not equal")
-        }
-        
+        assert(rows == otherMatrix.rows && columns == otherMatrix.columns, "Matrices should be of equal size")
         var resultMatrix = Matrix(rows: rows, columns: columns)
         
         for i in 0..<rows {
@@ -274,10 +268,7 @@ public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
  Complexity: O(n^3)
  */
 public func * (lhs: Matrix, rhs: Matrix) -> Matrix {
-    if lhs.columns != rhs.rows {
-        fatalError("Cannot multiply matrices")
-    }
-    
+    assert(lhs.columns != rhs.rows, "Left matrix columns should be the size of right matrix's rows")
     var resultMatrix = Matrix(rows: lhs.rows, columns: rhs.columns)
     
     for i in 0..<resultMatrix.rows {
