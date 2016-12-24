@@ -303,7 +303,7 @@ extension Matrix: CustomStringConvertible {
         for row in 0..<self.rows {
             let firstIndex = row * columns
             let lastIndex = (row + 1) * columns - 1
-            let rowValues = Array(grid[firstIndex ... lastIndex]).map({String($0)})
+            let rowValues = grid[firstIndex ... lastIndex].map({String($0)})
             
             let leftCharacter: String
             let rightCharacter: String
