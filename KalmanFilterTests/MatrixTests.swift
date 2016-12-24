@@ -120,7 +120,7 @@ class MatrixTests: XCTestCase {
         let properInversedMatrix = Matrix([[-24, 18, 5], [20, -15, -4], [-5, 4, 1]])
         
         XCTAssertEqual(initialMatrix.inversed, properInversedMatrix)
-        XCTAssertEqual(Matrix(grid: [2], rows: 1, columns: 1).inversed, Matrix(grid: [1/2], rows: 1, columns: 1))
+        XCTAssertEqual(Matrix(grid: [2], rows: 1, columns: 1).inversed, Matrix(grid: [1.0/2], rows: 1, columns: 1))
     }
     
     func testMatrixAdditionAndSubtraction() {
