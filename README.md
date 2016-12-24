@@ -3,6 +3,7 @@ Swift implementation of Conventional Kalman Filter algorithm
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/wearereasonablepeople/KalmanFilter.svg?branch=master)](https://travis-ci.org/wearereasonablepeople/KalmanFilter)
+[![codecov](https://codecov.io/gh/wearereasonablepeople/KalmanFilter/branch/master/graph/badge.svg)](https://codecov.io/gh/wearereasonablepeople/KalmanFilter)
 
 ##Motivation:
 [Kalman filter](https://en.wikipedia.org/wiki/Kalman_filter) is a widely applied algorithm to get a more
