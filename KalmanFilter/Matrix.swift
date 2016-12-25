@@ -298,33 +298,25 @@ public func * (lhs: Double, rhs: Matrix) -> Matrix {
 // MARK: - CustomStringConvertible for debug output
 extension Matrix: CustomStringConvertible {
     public var description: String {
-        var rows = [String]()
+        var description = ""
         
-        for row in 0..<self.rows {
-            let firstIndex = row * columns
-            let lastIndex = (row + 1) * columns - 1
-            let rowValues = Array(grid[firstIndex ... lastIndex]).map({String($0)})
+        for i in 0..<rows {
+            let contents = (0..<columns).map{"\(self[i, $0])"}.joined(separator: "\t")
             
-            let leftCharacter: String
-            let rightCharacter: String
-            
-            if self.rows == 1 {
-                leftCharacter = "["
-                rightCharacter = "]"
-            } else if row == 0 {
-                leftCharacter = "⎡"
-                rightCharacter = "⎤"
-            } else if row == self.rows - 1 {
-                leftCharacter = "⎣"
-                rightCharacter = "⎦"
-            } else {
-                leftCharacter = "⎮"
-                rightCharacter = "⎮"
+            switch (i, rows) {
+            case (0, 1):
+                description += "(\t\(contents)\t)"
+            case (0, _):
+                description += "⎛\t\(contents)\t⎞"
+            case (rows - 1, _):
+                description += "⎝\t\(contents)\t⎠"
+            default:
+                description += "⎜\t\(contents)\t⎥"
             }
             
-            rows.append(leftCharacter + rowValues.joined(separator: ", ") + rightCharacter)
+            description += "\n"
         }
         
-        return rows.joined(separator: "\n")
+        return description
     }
 }

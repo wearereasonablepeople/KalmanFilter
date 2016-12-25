@@ -120,7 +120,7 @@ class MatrixTests: XCTestCase {
         let properInversedMatrix = Matrix([[-24, 18, 5], [20, -15, -4], [-5, 4, 1]])
         
         XCTAssertEqual(initialMatrix.inversed, properInversedMatrix)
-        XCTAssertEqual(Matrix(grid: [2], rows: 1, columns: 1).inversed, Matrix(grid: [1/2], rows: 1, columns: 1))
+        XCTAssertEqual(Matrix(grid: [2], rows: 1, columns: 1).inversed, Matrix(grid: [1.0/2], rows: 1, columns: 1))
     }
     
     func testMatrixAdditionAndSubtraction() {
@@ -164,5 +164,17 @@ class MatrixTests: XCTestCase {
         XCTAssertEqual(matrix * 2, Matrix([[2, 4], [6, 8]]))
         XCTAssertEqual(2 * matrix, Matrix([[2, 4], [6, 8]]))
         XCTAssertEqual(matrix * 0.5, Matrix([[0.5, 1], [1.5, 2]]))
+    }
+    
+    func testMatrixStringDescription() {
+        let matrix = Matrix([[0.0, 2.0, 3.0, 4.0],
+                             [0.0, 2.0, 3.0, 4.0],
+                             [0.0, 2.0, 3.0, 4.0]])
+        
+        let string = "⎛\t0.0\t2.0\t3.0\t4.0\t⎞\n" +
+                     "⎜\t0.0\t2.0\t3.0\t4.0\t⎥\n" +
+                     "⎝\t0.0\t2.0\t3.0\t4.0\t⎠\n"
+        XCTAssertEqual(matrix.description, string)
+        XCTAssertEqual(Matrix([[0.0, 2.0, 3.0, 4.0]]).description, "(\t0.0\t2.0\t3.0\t4.0\t)\n")
     }
 }
