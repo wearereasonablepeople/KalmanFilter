@@ -37,6 +37,3 @@ If you are looking for a good source to understand how `Kalman Filter` works the
 [this page](http://bilgin.esme.org/BitsAndBytes/KalmanFilterforDummies), 
 [this one](http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/) and there is a great series of
 video tutorials on [udacity](https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373)
-##Fields for improvements
-The current method of finding inversed matrix used in framework is not very efficient and requires an
-implementation with better time complexity.
