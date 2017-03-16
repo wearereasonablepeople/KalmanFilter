@@ -5,12 +5,13 @@ Swift implementation of Conventional Kalman Filter algorithm
 [![Build Status](https://travis-ci.org/wearereasonablepeople/KalmanFilter.svg?branch=master)](https://travis-ci.org/wearereasonablepeople/KalmanFilter)
 [![codecov](https://codecov.io/gh/wearereasonablepeople/KalmanFilter/branch/master/graph/badge.svg)](https://codecov.io/gh/wearereasonablepeople/KalmanFilter)
 
-##Motivation:
+## Motivation:
 [Kalman filter](https://en.wikipedia.org/wiki/Kalman_filter) is a widely applied algorithm to get a more
 accurate guess in noisy environment. It has a lot of applications in real life such as guidance, navigation
 control for vehicles, etc. **Although I used it to filter GPS data originally, this framework doesn't have a 
 ready-to-use solutions that work with GPS and is more general implementation of algorithm.**
-##Example of usage
+
+## Example of usage
 `Kalman filter` can work with anything that adopts `KalmanInput` protocol. Framework provides `Matrix` 
 struct that conforms to this protocol, although you can use anything that is more suitable for you. For 
 example, framework also provides `Double`'s extension with `KalmanInput` and you can use it if your
@@ -29,7 +30,7 @@ for measurement in measurements {
     filter = update
 }
 ```
-##Sources
+## Sources
 All the names of properties and methods' parameters names are taken from 
 [wikipedia page](https://en.wikipedia.org/wiki/Kalman_filter#Details).
 
