@@ -8,7 +8,7 @@ Swift implementation of Conventional Kalman Filter algorithm
 ## Motivation:
 [Kalman filter](https://en.wikipedia.org/wiki/Kalman_filter) is a widely applied algorithm to get a more
 accurate guess in noisy environment. It has a lot of applications in real life such as guidance, navigation
-control for vehicles, etc. **Although I used it is mostly used to filter GPS data, this framework doesn't have a 
+control for vehicles, etc. **Although it is mostly used to filter GPS data, this framework doesn't have a 
 ready-to-use solutions that work with GPS and is more general implementation of algorithm.**
 
 ## Example of usage
