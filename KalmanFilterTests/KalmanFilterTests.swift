@@ -35,12 +35,12 @@ class KalmanFilterTests: XCTestCase {
         let resultX = Matrix(vector: [3.9996664447958645, 0.9999998335552873])
         let resultP = Matrix(grid: [2.3318904241194827, 0.9991676099921091, 0.9991676099921067, 0.49950058263974184], rows: 2, columns: 2)
         
-        XCTAssertEqualWithAccuracy(kalmanFilter.stateEstimatePrior[0, 0], resultX[0, 0], accuracy: accuracy)
-        XCTAssertEqualWithAccuracy(kalmanFilter.stateEstimatePrior[1, 0], resultX[1, 0], accuracy: accuracy)
-        XCTAssertEqualWithAccuracy(kalmanFilter.errorCovariancePrior[0, 0], resultP[0, 0], accuracy: accuracy)
-        XCTAssertEqualWithAccuracy(kalmanFilter.errorCovariancePrior[0, 1], resultP[0, 1], accuracy: accuracy)
-        XCTAssertEqualWithAccuracy(kalmanFilter.errorCovariancePrior[1, 0], resultP[1, 0], accuracy: accuracy)
-        XCTAssertEqualWithAccuracy(kalmanFilter.errorCovariancePrior[1, 1], resultP[1, 1], accuracy: accuracy)
+        XCTAssertEqual(kalmanFilter.stateEstimatePrior[0, 0], resultX[0, 0], accuracy: accuracy)
+        XCTAssertEqual(kalmanFilter.stateEstimatePrior[1, 0], resultX[1, 0], accuracy: accuracy)
+        XCTAssertEqual(kalmanFilter.errorCovariancePrior[0, 0], resultP[0, 0], accuracy: accuracy)
+        XCTAssertEqual(kalmanFilter.errorCovariancePrior[0, 1], resultP[0, 1], accuracy: accuracy)
+        XCTAssertEqual(kalmanFilter.errorCovariancePrior[1, 0], resultP[1, 0], accuracy: accuracy)
+        XCTAssertEqual(kalmanFilter.errorCovariancePrior[1, 1], resultP[1, 1], accuracy: accuracy)
     }
     
 }
