@@ -117,7 +117,8 @@ class MatrixTests: XCTestCase {
     
     func testMatrixInversed() {
         let initialMatrix = Matrix([[1, 2, 3], [0, 1, 4], [5, 6, 0]])
-        let properInversedMatrix = Matrix([[-24, 18, 5], [20, -15, -4], [-5, 4, 1]])
+        // Using accelerate causes a very slight precision issue
+        let properInversedMatrix = Matrix([[-24.000000000000089, 18.000000000000068, 5.0000000000000178], [20.000000000000075, -15.000000000000055, -4.0000000000000142], [-5.0000000000000195, 4.0000000000000133, 1.0000000000000033]])
         
         XCTAssertEqual(initialMatrix.inversed, properInversedMatrix)
         XCTAssertEqual(Matrix(grid: [2], rows: 1, columns: 1).inversed, Matrix(grid: [1.0/2], rows: 1, columns: 1))

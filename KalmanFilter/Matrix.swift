@@ -180,17 +180,27 @@ extension Matrix: KalmanInput {
             return Matrix(grid: [1/self[0, 0]], rows: 1, columns: 1)
         }
         
-        var resultMatrix = Matrix(squareOfSize: rows)
-        let tM = transposed
-        let det = determinant
-        for i in 0..<rows {
-            for j in 0..<rows {
-                let sign = (i + j) % 2 == 0 ? 1.0: -1.0
-                resultMatrix[i, j] = sign * tM.additionalMatrix(row: i, column: j).determinant / det
-            }
-        }
+        var inMatrix:[Double] = grid
+        // Get the dimensions of the matrix. An NxN matrix has N^2
+        // elements, so sqrt( N^2 ) will return N, the dimension
+        var N:__CLPK_integer = __CLPK_integer(sqrt(Double(grid.count)))
+        var N2:__CLPK_integer = N
+        var N3:__CLPK_integer = N
+        var lwork = __CLPK_integer(grid.count)
+        // Initialize some arrays for the dgetrf_(), and dgetri_() functions
+        var pivots:[__CLPK_integer] = [__CLPK_integer](repeating: 0, count: grid.count)
+        var workspace:[Double] = [Double](repeating: 0.0, count: grid.count)
+        var error: __CLPK_integer = 0
         
-        return resultMatrix
+        // Perform LU factorization
+        dgetrf_(&N, &N2, &inMatrix, &N3, &pivots, &error)
+        // Calculate inverse from LU factorization
+        dgetri_(&N, &inMatrix, &N2, &pivots, &workspace, &lwork, &error)
+        
+        if error != 0 {
+            assertionFailure("Matrix Inversion Failure")
+        }
+        return Matrix.init(grid: inMatrix, rows: rows, columns: rows)
     }
     
     /**
