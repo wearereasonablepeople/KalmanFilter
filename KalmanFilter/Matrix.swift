@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Accelerate
 
 public struct Matrix: Equatable {
     // MARK: - Properties
@@ -54,7 +55,7 @@ public struct Matrix: Equatable {
      elements in array equals to number of rows in vector.
      
      - parameter vector: array with elements of vector
-    */
+     */
     public init(vector: [Double]) {
         self.init(grid: vector, rows: vector.count, columns: 1)
     }
@@ -145,9 +146,9 @@ extension Matrix: KalmanInput {
      */
     public var transposed: Matrix {
         var resultMatrix = Matrix(rows: columns, columns: rows)
-        for i in 0..<rows {
-            for j in 0..<columns {
-                resultMatrix[j, i] = self[i, j]
+        grid.withUnsafeBufferPointer { xp in
+            resultMatrix.grid.withUnsafeMutableBufferPointer { rp in
+                vDSP_mtransD(xp.baseAddress!, 1, rp.baseAddress!, 1, vDSP_Length(resultMatrix.rows), vDSP_Length(resultMatrix.columns))
             }
         }
         return resultMatrix
@@ -249,7 +250,10 @@ extension Matrix: KalmanInput {
  Complexity: O(n^2)
  */
 public func + (lhs: Matrix, rhs: Matrix) -> Matrix {
-    return lhs.operate(with: rhs, closure: +)
+    assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns, "Matrices should be of equal size")
+    var resultMatrix = Matrix(rows: lhs.rows, columns: lhs.columns)
+    vDSP_vaddD(lhs.grid, vDSP_Stride(1), rhs.grid, vDSP_Stride(1), &resultMatrix.grid, vDSP_Stride(1), vDSP_Length(lhs.rows * lhs.columns))
+    return resultMatrix
 }
 
 /**
@@ -258,7 +262,10 @@ public func + (lhs: Matrix, rhs: Matrix) -> Matrix {
  Complexity: O(n^2)
  */
 public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
-    return lhs.operate(with: rhs, closure: -)
+    assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns, "Matrices should be of equal size")
+    var resultMatrix = Matrix(rows: lhs.rows, columns: lhs.columns)
+    vDSP_vsubD(rhs.grid, vDSP_Stride(1), lhs.grid, vDSP_Stride(1), &resultMatrix.grid, vDSP_Stride(1), vDSP_Length(lhs.rows * lhs.columns))
+    return resultMatrix
 }
 
 
@@ -270,16 +277,17 @@ public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
 public func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     assert(lhs.columns == rhs.rows, "Left matrix columns should be the size of right matrix's rows")
     var resultMatrix = Matrix(rows: lhs.rows, columns: rhs.columns)
+    let order = CblasRowMajor
+    let atrans = CblasNoTrans
+    let btrans = CblasNoTrans
+    let α = 1.0
+    let β = 1.0
     
-    for i in 0..<resultMatrix.rows {
-        for j in 0..<resultMatrix.columns {
-            var currentValue = 0.0
-            
-            for k in 0..<lhs.columns {
-                currentValue += lhs[i, k] * rhs[k, j]
+    lhs.grid.withUnsafeBufferPointer { pa in
+        rhs.grid.withUnsafeBufferPointer { pb in
+            resultMatrix.grid.withUnsafeMutableBufferPointer { pc in
+                cblas_dgemm(order, atrans, btrans, Int32(lhs.rows), Int32(rhs.columns), Int32(lhs.columns), α, pa.baseAddress!, Int32(lhs.columns), pb.baseAddress!, Int32(rhs.columns), β, pc.baseAddress!, Int32(resultMatrix.columns))
             }
-            
-            resultMatrix[i, j] = currentValue
         }
     }
     
