@@ -146,9 +146,11 @@ extension Matrix: KalmanInput {
      */
     public var transposed: Matrix {
         var resultMatrix = Matrix(rows: columns, columns: rows)
+        let columnLength = resultMatrix.columns
+        let rowLength = resultMatrix.rows
         grid.withUnsafeBufferPointer { xp in
             resultMatrix.grid.withUnsafeMutableBufferPointer { rp in
-                vDSP_mtransD(xp.baseAddress!, 1, rp.baseAddress!, 1, vDSP_Length(resultMatrix.rows), vDSP_Length(resultMatrix.columns))
+                vDSP_mtransD(xp.baseAddress!, 1, rp.baseAddress!, 1, vDSP_Length(rowLength), vDSP_Length(columnLength))
             }
         }
         return resultMatrix
@@ -292,11 +294,11 @@ public func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     let btrans = CblasNoTrans
     let α = 1.0
     let β = 1.0
-    
+    let resultColumns = resultMatrix.columns
     lhs.grid.withUnsafeBufferPointer { pa in
         rhs.grid.withUnsafeBufferPointer { pb in
             resultMatrix.grid.withUnsafeMutableBufferPointer { pc in
-                cblas_dgemm(order, atrans, btrans, Int32(lhs.rows), Int32(rhs.columns), Int32(lhs.columns), α, pa.baseAddress!, Int32(lhs.columns), pb.baseAddress!, Int32(rhs.columns), β, pc.baseAddress!, Int32(resultMatrix.columns))
+                cblas_dgemm(order, atrans, btrans, Int32(lhs.rows), Int32(rhs.columns), Int32(lhs.columns), α, pa.baseAddress!, Int32(lhs.columns), pb.baseAddress!, Int32(rhs.columns), β, pc.baseAddress!, Int32(resultColumns))
             }
         }
     }
