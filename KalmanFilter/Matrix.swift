@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Accelerate
 
 public struct Matrix: Equatable {
     // MARK: - Properties
@@ -54,7 +55,7 @@ public struct Matrix: Equatable {
      elements in array equals to number of rows in vector.
      
      - parameter vector: array with elements of vector
-    */
+     */
     public init(vector: [Double]) {
         self.init(grid: vector, rows: vector.count, columns: 1)
     }
@@ -145,9 +146,11 @@ extension Matrix: KalmanInput {
      */
     public var transposed: Matrix {
         var resultMatrix = Matrix(rows: columns, columns: rows)
-        for i in 0..<rows {
-            for j in 0..<columns {
-                resultMatrix[j, i] = self[i, j]
+        let columnLength = resultMatrix.columns
+        let rowLength = resultMatrix.rows
+        grid.withUnsafeBufferPointer { xp in
+            resultMatrix.grid.withUnsafeMutableBufferPointer { rp in
+                vDSP_mtransD(xp.baseAddress!, 1, rp.baseAddress!, 1, vDSP_Length(rowLength), vDSP_Length(columnLength))
             }
         }
         return resultMatrix
@@ -179,17 +182,27 @@ extension Matrix: KalmanInput {
             return Matrix(grid: [1/self[0, 0]], rows: 1, columns: 1)
         }
         
-        var resultMatrix = Matrix(squareOfSize: rows)
-        let tM = transposed
-        let det = determinant
-        for i in 0..<rows {
-            for j in 0..<rows {
-                let sign = (i + j) % 2 == 0 ? 1.0: -1.0
-                resultMatrix[i, j] = sign * tM.additionalMatrix(row: i, column: j).determinant / det
-            }
-        }
+        var inMatrix:[Double] = grid
+        // Get the dimensions of the matrix. An NxN matrix has N^2
+        // elements, so sqrt( N^2 ) will return N, the dimension
+        var N:__CLPK_integer = __CLPK_integer(sqrt(Double(grid.count)))
+        var N2:__CLPK_integer = N
+        var N3:__CLPK_integer = N
+        var lwork = __CLPK_integer(grid.count)
+        // Initialize some arrays for the dgetrf_(), and dgetri_() functions
+        var pivots:[__CLPK_integer] = [__CLPK_integer](repeating: 0, count: grid.count)
+        var workspace:[Double] = [Double](repeating: 0.0, count: grid.count)
+        var error: __CLPK_integer = 0
         
-        return resultMatrix
+        // Perform LU factorization
+        dgetrf_(&N, &N2, &inMatrix, &N3, &pivots, &error)
+        // Calculate inverse from LU factorization
+        dgetri_(&N, &inMatrix, &N2, &pivots, &workspace, &lwork, &error)
+        
+        if error != 0 {
+            assertionFailure("Matrix Inversion Failure")
+        }
+        return Matrix.init(grid: inMatrix, rows: rows, columns: rows)
     }
     
     /**
@@ -249,7 +262,10 @@ extension Matrix: KalmanInput {
  Complexity: O(n^2)
  */
 public func + (lhs: Matrix, rhs: Matrix) -> Matrix {
-    return lhs.operate(with: rhs, closure: +)
+    assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns, "Matrices should be of equal size")
+    var resultMatrix = Matrix(rows: lhs.rows, columns: lhs.columns)
+    vDSP_vaddD(lhs.grid, vDSP_Stride(1), rhs.grid, vDSP_Stride(1), &resultMatrix.grid, vDSP_Stride(1), vDSP_Length(lhs.rows * lhs.columns))
+    return resultMatrix
 }
 
 /**
@@ -258,7 +274,10 @@ public func + (lhs: Matrix, rhs: Matrix) -> Matrix {
  Complexity: O(n^2)
  */
 public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
-    return lhs.operate(with: rhs, closure: -)
+    assert(lhs.rows == rhs.rows && lhs.columns == rhs.columns, "Matrices should be of equal size")
+    var resultMatrix = Matrix(rows: lhs.rows, columns: lhs.columns)
+    vDSP_vsubD(rhs.grid, vDSP_Stride(1), lhs.grid, vDSP_Stride(1), &resultMatrix.grid, vDSP_Stride(1), vDSP_Length(lhs.rows * lhs.columns))
+    return resultMatrix
 }
 
 
@@ -270,16 +289,17 @@ public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
 public func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     assert(lhs.columns == rhs.rows, "Left matrix columns should be the size of right matrix's rows")
     var resultMatrix = Matrix(rows: lhs.rows, columns: rhs.columns)
-    
-    for i in 0..<resultMatrix.rows {
-        for j in 0..<resultMatrix.columns {
-            var currentValue = 0.0
-            
-            for k in 0..<lhs.columns {
-                currentValue += lhs[i, k] * rhs[k, j]
+    let order = CblasRowMajor
+    let atrans = CblasNoTrans
+    let btrans = CblasNoTrans
+    let α = 1.0
+    let β = 1.0
+    let resultColumns = resultMatrix.columns
+    lhs.grid.withUnsafeBufferPointer { pa in
+        rhs.grid.withUnsafeBufferPointer { pb in
+            resultMatrix.grid.withUnsafeMutableBufferPointer { pc in
+                cblas_dgemm(order, atrans, btrans, Int32(lhs.rows), Int32(rhs.columns), Int32(lhs.columns), α, pa.baseAddress!, Int32(lhs.columns), pb.baseAddress!, Int32(rhs.columns), β, pc.baseAddress!, Int32(resultColumns))
             }
-            
-            resultMatrix[i, j] = currentValue
         }
     }
     
